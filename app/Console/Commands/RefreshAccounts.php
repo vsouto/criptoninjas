@@ -63,8 +63,13 @@ class RefreshAccounts extends Command
                 'timeout'  => 60,
             ]);
 
+            $params = [
+                'pKey' => $pKey,
+                'sKey' => $sKey,
+            ];
+            
             // Send a request to
-            $response = $client->request('GET', $apiURL . $methods['balance']);
+            $response = $client->get($apiURL . $methods['balance'], $params);
 
             // Decode response body
             $obj = json_decode($response->getBody());
