@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5159a03091df9910f7072654b078787d",
-    "content-hash": "deb05a6f875e0c35527e2bd0e4e5f3ac",
+    "hash": "8954285cb7c8093f695c11968305906d",
+    "content-hash": "04fba6a2679aa918bfd1393238ad8c4d",
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
@@ -1301,6 +1301,41 @@
             "time": "2017-03-20 17:10:46"
         },
         {
+            "name": "hitbtc-com/hitbtc-php-sdk",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hitbtc-com/hitbtc-php-sdk.git",
+                "reference": "18ef23c3b478f5351debff66bc88f76e1d137fe8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hitbtc-com/hitbtc-php-sdk/zipball/18ef23c3b478f5351debff66bc88f76e1d137fe8",
+                "reference": "18ef23c3b478f5351debff66bc88f76e1d137fe8",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "6.x"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Hitbtc": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "HitBTC"
+                }
+            ],
+            "description": "HitBTC SDK for PHP",
+            "time": "2017-09-04 10:26:20"
+        },
+        {
             "name": "intervention/image",
             "version": "2.4.1",
             "source": {
@@ -1570,16 +1605,16 @@
         },
         {
             "name": "larapack/hooks",
-            "version": "v1.0.7",
+            "version": "v1.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/larapack/hooks.git",
-                "reference": "779ad2a35a70ad9ab76a30628f3a9bbe0a8f2013"
+                "reference": "a3d84cbd6c13e0bedede6d560026f474aa5c7995"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/larapack/hooks/zipball/779ad2a35a70ad9ab76a30628f3a9bbe0a8f2013",
-                "reference": "779ad2a35a70ad9ab76a30628f3a9bbe0a8f2013",
+                "url": "https://api.github.com/repos/larapack/hooks/zipball/a3d84cbd6c13e0bedede6d560026f474aa5c7995",
+                "reference": "a3d84cbd6c13e0bedede6d560026f474aa5c7995",
                 "shasum": ""
             },
             "require": {
@@ -1611,7 +1646,7 @@
                 "hooks",
                 "laravel"
             ],
-            "time": "2018-01-25 08:50:54"
+            "time": "2018-02-02 13:17:22"
         },
         {
             "name": "larapack/voyager-hooks",

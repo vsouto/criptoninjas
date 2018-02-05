@@ -9,7 +9,7 @@
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
-        "guzzlehttp/guzzle": "~6.0",
+        "hitbtc-com/hitbtc-php-sdk": "~1.0",
         "view-components/grids": "^0.5.9",
         "view-components/eloquent-data-processing": "^1.2",
         "tcg/voyager": "^1.0"

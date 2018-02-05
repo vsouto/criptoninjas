@@ -51,44 +51,20 @@ class RefreshAccounts extends Command
 
         $sKey = '4d81e5986651d45a2091f2d420fe80a9';
 
+        $client = new \Hitbtc\ProtectedClient( $pKey, $sKey, $demo = false);
+
         try {
-
-
-            $client = new Client([
-                // Base URI is used with relative requests
-                'base_uri' => $apiURL,
-                'pKey' => $pKey,
-                'sKey' => $sKey,
-                // You can set any number of default request options.
-                'timeout'  => 60,
-            ]);
-
-            $params = [
-                'pKey' => $pKey,
-                'sKey' => $sKey,
-            ];
-            
-            // Send a request to
-            $response = $client->get($apiURL . $methods['balance'], $params);
-
-            // Decode response body
-            $obj = json_decode($response->getBody());
-
-        }
-        catch (\Exception $e) {
-
-            $return['code'] = $e->getCode();
-            $return['msg'] = 'Erro ao conectar.';
-
-            dd($e);
-            return $return;
+            foreach ($client->getBalanceTrading() as $balance) {
+                echo $balance->getCurrency() . ' ' . $balance->getAvailable() . ' reserved:' . $balance->getReserved() . "\n";
+            }
+        } catch (\Hitbtc\Exception\InvalidRequestException $e) {
+            echo $e;
+        } catch (\Exception $e) {
+            echo $e;
         }
 
-        // No user returned?
-        if (!$obj) {
-            return $this->error('Nenhum resultado encontrado.');
-        }
 
-        return $this->info('Result: ' . $obj);
+
+        return $this->info('Result: ' . $balance);
     }
 }
