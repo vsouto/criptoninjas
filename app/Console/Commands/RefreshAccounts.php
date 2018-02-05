@@ -39,11 +39,13 @@ class RefreshAccounts extends Command
     public function handle()
     {
         //
+        $methods = [
+            'balance' => '/trading/balance',
+            'login' => '/login',
+            'currency' => '/public/currency'
+        ];
+
         $apiURL = 'https://api.hitbtc.com/api/2';
-
-        $loginURL = '/login';
-
-        $getURL = '/public/currency';
 
         $pKey = 'c5e32c1d54b7aa8358c6a3556ef3dc49';
 
@@ -62,7 +64,7 @@ class RefreshAccounts extends Command
             ]);
 
             // Send a request to
-            $response = $client->request('GET', $apiURL . $loginURL);
+            $response = $client->request('GET', $apiURL . $methods['balance']);
 
             // Decode response body
             $obj = json_decode($response->getBody());
