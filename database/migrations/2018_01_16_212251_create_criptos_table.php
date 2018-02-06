@@ -20,6 +20,14 @@ class CreateCriptosTable extends Migration
             $table->string('site')->nullable();
             $table->timestamps();
         });
+
+        Schema::create('cripto_user', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger("user_id");
+            $table->unsignedInteger("cripto_id");
+            $table->decimal('amount', 27, 18)->default('0');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -30,5 +38,6 @@ class CreateCriptosTable extends Migration
     public function down()
     {
         Schema::dropIfExists('criptos');
+        Schema::dropIfExists('cripto_user');
     }
 }

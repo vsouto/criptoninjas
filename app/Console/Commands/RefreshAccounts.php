@@ -50,7 +50,7 @@ class RefreshAccounts extends Command
         $apiURL = 'https://api.hitbtc.com/api/2';
 
         // Get Active Clients
-        $active_clients = User::activeClient()->get();
+        $active_clients = User::activeClient()->with('criptos')->get();
 
         foreach ($active_clients as $user) {
 
@@ -68,23 +68,34 @@ class RefreshAccounts extends Command
                     // Check if cripto already exists
                     $cripto = Cripto::where('code', $balance->getCurrency())->first();
 
+                    // Cripto does NOT exists
                     if (!$cripto) {
 
                         // Create
-                        Cripto::create([
+                        $cripto_id = Cripto::create([
                             'name' => $balance->getCurrency(),
                             'code' => $balance->getCurrency()
                         ]);
 
+                        $created_cripto = Cripto::where('id', $cripto_id)->first();
+
+                        // Attach the cripto for this user
+                        $user->criptos()->attach($created_cripto, ['amount' => $balance->getCurrency()]);
+
                         $this->info('Cripto created: ' . $balance->getCurrency());
                     }
+                    else {
 
-                    var_dump($balance);
+                        // Update user amount
+                        $current_user_cripto = $user->criptos->where('code',$balance->getCurrency())->updateOrCreate([
+                            'amount' => $balance->getAvailable()
+                        ]);
+                    }
+                    
                     // Info
                     echo $balance->getCurrency() . ' ' . $balance->getAvailable() . ' reserved:' . $balance->getReserved() . "\n";
                 }
 
-                $this->info('Result: ' . $balance);
             } catch (\Hitbtc\Exception\InvalidRequestException $e) {
                 echo $e;
             } catch (\Exception $e) {

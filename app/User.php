@@ -27,6 +27,15 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
+    /**
+     * The relationship
+     */
+    public function criptos()
+    {
+        return $this->belongsToMany('App\Cripto')->as('wallet')->withPivot('amount')->withTimestamps();
+    }
+
     public function scopeActiveClient($query)
     {
         return $query->where('active_client', true);

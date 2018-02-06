@@ -14,4 +14,12 @@ class Cripto extends Model
     protected $fillable = [
         'name', 'code'
     ];
+
+    /**
+     * The relationship
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\User');
+    }
 }

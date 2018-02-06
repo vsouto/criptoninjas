@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -21,7 +22,11 @@ class PagesController extends Controller
     public function dashboard()
     {
 
-        return view('pages.dashboard');
+        $user = User::where('name', 'Victor')->with('criptos')->get();
+
+        dd($user->first()->criptos->where('code','BTC')->first());
+
+        return view('pages.dashboard', compact('wallets'));
     }
 
 }
