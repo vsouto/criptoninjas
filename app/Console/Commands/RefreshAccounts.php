@@ -77,21 +77,18 @@ class RefreshAccounts extends Command
                             'code' => $balance->getCurrency()
                         ]);
 
-                        $created_cripto = Cripto::where('id', $cripto_id)->first();
-
-                        // Attach the cripto for this user
-                        $user->criptos()->attach($created_cripto, ['amount' => $balance->getCurrency()]);
+                        $cripto = Cripto::where('id', $cripto_id)->first();
 
                         $this->info('Cripto created: ' . $balance->getCurrency());
                     }
-                    else {
 
-                        // Update user amount
-                        $current_user_cripto = $user->criptos->where('code',$balance->getCurrency())->updateOrCreate([
-                            'amount' => $balance->getAvailable()
-                        ]);
-                    }
-                    
+                    // Detach the cripto
+                    if ($user->criptos->where('code',$balance->getCurrency())->first())
+                        $user->criptos()->detach($cripto->id);
+
+                    // Attach the cripto for this user
+                    $user->criptos()->attach($cripto, ['amount' => $balance->getCurrency()]);
+
                     // Info
                     echo $balance->getCurrency() . ' ' . $balance->getAvailable() . ' reserved:' . $balance->getReserved() . "\n";
                 }
