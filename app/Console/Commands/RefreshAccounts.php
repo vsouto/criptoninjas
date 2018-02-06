@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Cripto;
 use App\User;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
@@ -64,6 +65,22 @@ class RefreshAccounts extends Command
 
             try {
                 foreach ($client->getBalanceTrading() as $balance) {
+                    // Check if cripto already exists
+                    $cripto = Cripto::where('code', $balance->getCurrency())->first();
+
+                    if (!$cripto) {
+
+                        // Create
+                        Cripto::create([
+                            'name' => $balance->getCurrency(),
+                            'code' => $balance->getCurrency()
+                        ]);
+
+                        $this->info('Cripto created: ' . $balance->getCurrency());
+                    }
+
+                    var_dump($balance);
+                    // Info
                     echo $balance->getCurrency() . ' ' . $balance->getAvailable() . ' reserved:' . $balance->getReserved() . "\n";
                 }
 

@@ -15,6 +15,9 @@ class CreateCriptosTable extends Migration
     {
         Schema::create('criptos', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->string('code');
+            $table->string('site')->nullable();
             $table->timestamps();
         });
     }
