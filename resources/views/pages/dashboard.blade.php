@@ -80,8 +80,8 @@
                     </div>
 
                     <div class="media-body">
-                        <p class="text-2x mar-no text-thin">4</p>
-                        <p class="text-muted mar-no">Channels</p>
+                        <p class="text-2x mar-no text-thin">{{ $criptos->count() }}</p>
+                        <p class="text-muted mar-no">Criptos mapped</p>
                     </div>
                 </div>
                 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->

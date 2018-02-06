@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cripto;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,9 @@ class PagesController extends Controller
 
         $user = User::where('name', 'Victor')->with('criptos')->first();
 
-        return view('pages.dashboard', compact('user', 'users'));
+        $criptos = Cripto::get();
+
+        return view('pages.dashboard', compact('user', 'users','criptos'));
     }
 
 }

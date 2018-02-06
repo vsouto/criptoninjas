@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Cripto;
 use App\User;
 use Illuminate\Console\Command;
 
@@ -49,11 +50,19 @@ class RefreshCurrencies extends Command
 
         $client = new \Hitbtc\ProtectedClient( $user->hitbtc_public_key, $user->hitbtc_private_key, $demo = false);
 
+        $currencies = Cripto::get();
+
         try {
 
-            $ticker = $client->getTicker('BTCUSD');
+            foreach ($currencies as $currency ) {
 
-            dd($ticker);
+                $ticker = $client->getTicker( $currency->symbol );
+
+                Cripto::where('symbol', $currency->symbol)->update(['price' => $ticker['last']]);
+
+                $this->info('Updating ' . $currency->symbol . ' to: ' . $ticker['last']);
+            }
+
             return $ticker;
 
         } catch (\Hitbtc\Exception\InvalidRequestException $e) {
