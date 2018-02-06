@@ -627,6 +627,8 @@
 <!--Specify page [ SAMPLE ]-->
 <script src="{{ asset('assets/js/demo/dashboard.js') }}"></script>
 
+@include('elements.scripts')
+
 </body>
 
 <!-- Mirrored from www.themeon.net/nifty/v2.2/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Apr 2015 10:43:58 GMT -->

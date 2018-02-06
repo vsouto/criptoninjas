@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="media-body">
-                        <p class="text-2x mar-no text-thin">13</p>
+                        <p class="text-2x mar-no text-thin">{{ $users->count() }}</p>
                         <p class="text-muted mar-no">Active Ninjas</p>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                     </div>
 
                     <div class="media-body">
-                        <p class="text-2x mar-no text-thin">7</p>
+                        <p class="text-2x mar-no text-thin">{{ $user->criptos->count() }}</p>
                         <p class="text-muted mar-no">Your Cryptos</p>
                     </div>
                 </div>
@@ -99,8 +99,8 @@
                     </div>
 
                     <div class="media-body">
-                        <p class="text-2x mar-no text-thin">U$ 1.000.000</p>
-                        <p class="text-muted mar-no">MarketCap</p>
+                        <p class="text-2x mar-no text-thin">U$ {{ $user->balance }}</p>
+                        <p class="text-muted mar-no">Your balance</p>
                     </div>
                 </div>
                 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -137,46 +137,20 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td><a href="#" class="btn-link">LTC</a></td>
-                                    <td>Litecoin</td>
-                                    <td>0.1 BTC</td>
-                                    <td class="text-center">0.05 BTC</td>
-                                    <td class="text-center"><span class="label label-table label-success">U$ 12.320</span></td>
-                                    <td class="text-right">
-                                        <span class="label label-table label-success">32%</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#" class="btn-link">ETH</a></td>
-                                    <td>Ethereum</td>
-                                    <td>0.1 BTC</td>
-                                    <td class="text-center">0.05 BTC</td>
-                                    <td class="text-center"><span class="label label-table label-success">U$ 5.800</span></td>
-                                    <td class="text-right">
-                                        <span class="label label-table label-success">41%</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#" class="btn-link">XRP</a></td>
-                                    <td>Ripple</td>
-                                    <td>0.1 BTC</td>
-                                    <td class="text-center">0.05 BTC</td>
-                                    <td class="text-center"><span class="label label-table label-danger">U$ 1.320</span></td>
-                                    <td class="text-right">
-                                        <span class="label label-table label-success">2%</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="#" class="btn-link">SUB</a></td>
-                                    <td>Substratum</td>
-                                    <td>0.1 BTC</td>
-                                    <td class="text-center">0.05 BTC</td>
-                                    <td class="text-center"><span class="label label-table label-success">U$ 420</span></td>
-                                    <td class="text-right">
-                                        <span class="label label-table label-success">19%</span>
-                                    </td>
-                                </tr>
+                                @foreach ($user->criptos as $cripto)
+                                    <tr>
+                                        <td><a href="#" class="btn-link">{{ $cripto->id }}</a></td>
+                                        <td>{{ $cripto->name }}</td>
+                                        <td></td>
+                                        <td class="text-center">{{ $cripto->wallet->amount }} {{ $cripto->code }}</td>
+                                        <td class="text-center">
+                                            {{--<span class="label label-table label-success">U$ 12.320</span>--}}
+                                        </td>
+                                        <td class="text-right">
+                                            {{--<span class="label label-table label-success">32%</span>--}}
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

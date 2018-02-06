@@ -364,19 +364,6 @@ $(window).on('load', function() {
 
 
 
-	// WELCOME NOTIFICATIONS
-	// =================================================================
-	// Require Admin Core Javascript
-	// =================================================================
-	 var fvisit  = setTimeout(function(){
-		$.niftyNoty({
-			type: 'dark',
-			title: 'Hello Admin,',
-			message: 'Lorem ipsum dolor sit amet consectetuer <br> adipiscing elit sed diam nonummy nibh.',
-			container: 'floating',
-			timer: 5500
-		});
-		clearTimeout(fvisit);
-	 }, 3000);
+
 
 });

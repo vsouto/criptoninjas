@@ -22,11 +22,11 @@ class PagesController extends Controller
     public function dashboard()
     {
 
-        $user = User::where('name', 'Victor')->with('criptos')->get();
+        $users = User::activeClient()->get();
 
-        dd($user->first()->criptos->where('code','BTC')->first());
+        $user = User::where('name', 'Victor')->with('criptos')->first();
 
-        return view('pages.dashboard', compact('wallets'));
+        return view('pages.dashboard', compact('user', 'users'));
     }
 
 }

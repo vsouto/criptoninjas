@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->boolean('active_client')->default(false);
             $table->string('hitbtc_public_key')->nullable();
             $table->string('hitbtc_private_key')->nullable();
+            $table->decimal('balance', 27,18)->default('0');
             $table->rememberToken();
             $table->timestamps();
         });

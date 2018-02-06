@@ -18,6 +18,7 @@ class CreateCriptosTable extends Migration
             $table->string('name');
             $table->string('code');
             $table->string('site')->nullable();
+            $table->decimal('price',27,18)->nullable();
             $table->timestamps();
         });
 
