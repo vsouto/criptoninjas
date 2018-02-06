@@ -53,6 +53,7 @@ class GetSymbols extends Command
                 dump($symbol);
                 $cripto = Cripto::updateOrCreate(['symbol' => $symbol['id']],
                     [
+                        'name' => $symbol['id'],
                         'base' => $symbol['baseCurrency'],
                         'quote' => $symbol['quoteCurrency'],
                         'symbol' => $symbol['id'],
