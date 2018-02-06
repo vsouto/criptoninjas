@@ -99,7 +99,7 @@
                     </div>
 
                     <div class="media-body">
-                        <p class="text-2x mar-no text-thin">U$ {{ $user->balance }}</p>
+                        <p class="text-2x mar-no text-thin">U$ {{ number_format($user->balance, 2, ',', '.') }}</p>
                         <p class="text-muted mar-no">Your balance</p>
                     </div>
                 </div>
@@ -132,6 +132,7 @@
                                     <th>Name</th>
                                     <th>Initial</th>
                                     <th>Current Amount</th>
+                                    <th>Current Price</th>
                                     <th>Current Value</th>
                                     <th class="text-center">Profit</th>
                                 </tr>
@@ -143,8 +144,9 @@
                                         <td>{{ $cripto->name }}</td>
                                         <td></td>
                                         <td class="text-center">{{ $cripto->wallet->amount }} {{ $cripto->code }}</td>
+                                        <td class="text-center">U$ {{ $cripto->price }} </td>
                                         <td class="text-center">
-                                            {{--<span class="label label-table label-success">U$ 12.320</span>--}}
+                                            <span class="label label-table label-success">U$ {{ $cripto->price * $cripto->wallet->amount }}</span>
                                         </td>
                                         <td class="text-right">
                                             {{--<span class="label label-table label-success">32%</span>--}}

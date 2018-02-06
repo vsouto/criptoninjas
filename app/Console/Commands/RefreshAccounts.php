@@ -65,6 +65,12 @@ class RefreshAccounts extends Command
 
             try {
                 foreach ($client->getBalanceTrading() as $balance) {
+
+                    $cripto = Cripto::where('base', $balance->getCurrency())
+                        ->where('quote', 'USD')
+                        ->first();
+
+                    /*
                     // Check if cripto already exists
                     $cripto = Cripto::where('code', $balance->getCurrency())->first();
 
@@ -74,16 +80,16 @@ class RefreshAccounts extends Command
                         // Create
                         $cripto_id = Cripto::create([
                             'name' => $balance->getCurrency(),
-                            'code' => $balance->getCurrency()
+                            'symbol' => $balance->getCurrency()
                         ]);
 
                         $cripto = Cripto::where('id', $cripto_id)->first();
 
                         $this->info('Cripto created: ' . $balance->getCurrency());
-                    }
+                    }*/
 
                     // Detach the cripto
-                    if ($user->criptos->where('code',$balance->getCurrency())->first())
+                    if ($user->criptos->where('base',$balance->getCurrency())->first())
                         $user->criptos()->detach($cripto->id);
 
                     // Have funds?
