@@ -48,7 +48,12 @@ class RefreshCurrencies extends Command
         $client = new \Hitbtc\ProtectedClient( $user->hitbtc_public_key, $user->hitbtc_private_key, $demo = false);
 
         try {
-            return $client->getTicker('BTC');
+            $ticker = $client->getTicker('BTC');
+
+            $this->info('Ticker: ' . $ticker);
+
+            dd($ticker);
+            return $ticker;
 
         } catch (\Hitbtc\Exception\InvalidRequestException $e) {
             echo $e;
