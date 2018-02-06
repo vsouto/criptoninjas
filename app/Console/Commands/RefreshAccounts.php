@@ -86,8 +86,11 @@ class RefreshAccounts extends Command
                     if ($user->criptos->where('code',$balance->getCurrency())->first())
                         $user->criptos()->detach($cripto->id);
 
-                    // Attach the cripto for this user
-                    $user->criptos()->attach($cripto, ['amount' => $balance->getAvailable()]);
+                    // Have funds?
+                    if ($balance->getAvailable() > 0) {
+                        // Attach the cripto for this user
+                        $user->criptos()->attach($cripto, ['amount' => $balance->getAvailable()]);
+                    }
 
                     // Info
                     echo $balance->getCurrency() . ' ' . $balance->getAvailable() . ' reserved:' . $balance->getReserved() . "\n";
