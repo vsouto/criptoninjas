@@ -63,6 +63,8 @@ class RefreshCurrencies extends Command
                 $this->info('Updating ' . $currency->symbol . ' to: ' . $ticker['last']);
             }
 
+            $this->info('Currencies updated.');
+            
             return $ticker;
 
         } catch (\Hitbtc\Exception\InvalidRequestException $e) {
