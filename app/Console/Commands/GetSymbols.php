@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Cripto;
 use App\User;
 use Illuminate\Console\Command;
 
@@ -47,7 +48,20 @@ class GetSymbols extends Command
 
             $symbols = $client->getSymbols();
 
-            dd($symbols);
+            foreach($symbols as $symbol) {
+
+                $cripto = Cripto::updateOrCreate(['symbol', $symbol->id],
+                    [
+                        'base' => $symbol->baseCurrency,
+                        'quote' => $symbol->quoteCurrency,
+                        'symbol' => $symbol->id,
+                    ]
+                );
+
+                $this->info('Updating ' . $symbol->id);
+
+            }
+
             return $symbols;
 
         } catch (\Hitbtc\Exception\InvalidRequestException $e) {
