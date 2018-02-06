@@ -26,4 +26,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function scopeActiveClient($query)
+    {
+        return $query->where('active_client', true);
+    }
 }

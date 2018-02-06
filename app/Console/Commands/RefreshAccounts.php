@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\User;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 
@@ -47,24 +48,33 @@ class RefreshAccounts extends Command
 
         $apiURL = 'https://api.hitbtc.com/api/2';
 
-        $pKey = 'c5e32c1d54b7aa8358c6a3556ef3dc49';
+        // Get Active Clients
+        $active_clients = User::activeClient()->get();
 
-        $sKey = '4d81e5986651d45a2091f2d420fe80a9';
+        foreach ($active_clients as $user) {
 
-        $client = new \Hitbtc\ProtectedClient( $pKey, $sKey, $demo = false);
-
-        try {
-            foreach ($client->getBalanceTrading() as $balance) {
-                echo $balance->getCurrency() . ' ' . $balance->getAvailable() . ' reserved:' . $balance->getReserved() . "\n";
+            if (!$user || !$user->hitbtc_public_key || !$user->hitbtc_private_key) {
+                // add log error for this user
+                continue;
             }
-        } catch (\Hitbtc\Exception\InvalidRequestException $e) {
-            echo $e;
-        } catch (\Exception $e) {
-            echo $e;
+
+            $this->info('Getting balance info for: ' . $user->name);
+
+            $client = new \Hitbtc\ProtectedClient( $user->hitbtc_public_key, $user->hitbtc_private_key, $demo = false);
+
+            try {
+                foreach ($client->getBalanceTrading() as $balance) {
+                    echo $balance->getCurrency() . ' ' . $balance->getAvailable() . ' reserved:' . $balance->getReserved() . "\n";
+                }
+
+                $this->info('Result: ' . $balance);
+            } catch (\Hitbtc\Exception\InvalidRequestException $e) {
+                echo $e;
+            } catch (\Exception $e) {
+                echo $e;
+            }
         }
 
-
-
-        return $this->info('Result: ' . $balance);
+        return $this->info('Finished.');
     }
 }
