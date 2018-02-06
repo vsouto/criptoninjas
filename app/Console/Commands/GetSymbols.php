@@ -50,16 +50,15 @@ class GetSymbols extends Command
 
             foreach($symbols as $symbol) {
 
-                $cripto = Cripto::updateOrCreate(['symbol', $symbol->id],
+                $cripto = Cripto::updateOrCreate(['symbol', $symbol['id']],
                     [
-                        'base' => $symbol->baseCurrency,
-                        'quote' => $symbol->quoteCurrency,
-                        'symbol' => $symbol->id,
+                        'base' => $symbol['baseCurrency'],
+                        'quote' => $symbol['quoteCurrency'],
+                        'symbol' => $symbol['id'],
                     ]
                 );
 
                 $this->info('Updating ' . $symbol->id);
-
             }
 
             return $symbols;
