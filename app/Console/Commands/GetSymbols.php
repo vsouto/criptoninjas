@@ -5,21 +5,21 @@ namespace App\Console\Commands;
 use App\User;
 use Illuminate\Console\Command;
 
-class RefreshCurrencies extends Command
+class GetSymbols extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'refresh:currencies';
+    protected $signature = 'get:symbols';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Refresh all currencies';
+    protected $description = 'Get symbols';
 
     /**
      * Create a new command instance.
@@ -39,22 +39,16 @@ class RefreshCurrencies extends Command
     public function handle()
     {
         //
-        $currencies = [
-            'BTCUSD',
-            'ETHUSD',
-            'BCHUSD'
-        ];
-
         $user = User::where('name', 'Victor')->first();
 
         $client = new \Hitbtc\ProtectedClient( $user->hitbtc_public_key, $user->hitbtc_private_key, $demo = false);
 
         try {
 
-            $ticker = $client->getTicker('BTCUSD');
+            $symbols = $client->getSymbols();
 
-            dd($ticker);
-            return $ticker;
+            dd($symbols);
+            return $symbols;
 
         } catch (\Hitbtc\Exception\InvalidRequestException $e) {
             echo $e;
