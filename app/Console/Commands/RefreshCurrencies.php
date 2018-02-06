@@ -50,7 +50,7 @@ class RefreshCurrencies extends Command
         try {
             $ticker = $client->getTicker('BTC');
 
-            $this->info('Ticker: ' . $ticker);
+            //$this->info('Ticker: ' . $ticker);
 
             dd($ticker);
             return $ticker;
