@@ -48,7 +48,7 @@ class RefreshCurrencies extends Command
         $client = new \Hitbtc\ProtectedClient( $user->hitbtc_public_key, $user->hitbtc_private_key, $demo = false);
 
         try {
-            $ticker = $client->getTicker('BTC');
+            $ticker = $client->getTicker('BTCUSD');
 
             //$this->info('Ticker: ' . $ticker);
 
