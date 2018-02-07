@@ -70,24 +70,6 @@ class RefreshAccounts extends Command
                         ->where('quote', 'USD')
                         ->first();
 
-                    /*
-                    // Check if cripto already exists
-                    $cripto = Cripto::where('code', $balance->getCurrency())->first();
-
-                    // Cripto does NOT exists
-                    if (!$cripto) {
-
-                        // Create
-                        $cripto_id = Cripto::create([
-                            'name' => $balance->getCurrency(),
-                            'symbol' => $balance->getCurrency()
-                        ]);
-
-                        $cripto = Cripto::where('id', $cripto_id)->first();
-
-                        $this->info('Cripto created: ' . $balance->getCurrency());
-                    }*/
-
                     // Detach the cripto
                     if ($user->criptos->where('base',$balance->getCurrency())->first())
                         $user->criptos()->detach($cripto->id);

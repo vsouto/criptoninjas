@@ -14,6 +14,10 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
+        Commands\GetSymbols::class,
+        Commands\RefreshAccounts::class,
+        Commands\RefreshBalances::class,
+        Commands\RefreshCurrencies::class
     ];
 
     /**
@@ -24,11 +28,17 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('inspire')
-            ->hourly();
+        $schedule->command('get:symbols')
+            ->daily();
 
-        $schedule->command('inspire')
-            ->hourly();
+        $schedule->command('refresh:currencies')
+            ->everyFifteenMinutes();
+
+        $schedule->command('refresh:accounts')
+            ->everyThirtyMinutes();
+
+        $schedule->command('refresh:balances')
+            ->everyThirtyMinutes();
     }
 
     /**

@@ -51,7 +51,7 @@ class RefreshBalances extends Command
 
             $user->update(['balance' => $balance]);
 
-            $this->info('Updating user ' . $user->name . ' to: ' . $balance);
+            //$this->info('Updating user ' . $user->name . ' to: ' . $balance);
         }
 
         $this->info('Update finished.');
