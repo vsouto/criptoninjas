@@ -271,16 +271,16 @@
                                             <span class="sr-only">75%</span>
                                         </div>
                                     </div>
-                                    <small class="text-muted">15% Completed</small>
+                                    <small class="text-muted">75% Completed</small>
                                 </div>
                                 <div class="pad-ver">
                                     <p class="text-lg">Beta Progress</p>
                                     <div class="progress progress-sm">
-                                        <div role="progressbar" style="width: 10%;" aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" class="progress-bar progress-bar-success">
-                                            <span class="sr-only">10%</span>
+                                        <div role="progressbar" style="width: 15%;" aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" class="progress-bar progress-bar-success">
+                                            <span class="sr-only">15%</span>
                                         </div>
                                     </div>
-                                    <small class="text-muted">70% Completed</small>
+                                    <small class="text-muted">15% Completed</small>
                                 </div>
 
                                 <hr>
