@@ -38,6 +38,7 @@ class User extends Authenticatable
 
     public function scopeActiveClient($query)
     {
-        return $query->where('active_client', true);
+        return $query;
+        //return $query->where('balance','<>' ,'0');
     }
 }
