@@ -129,7 +129,7 @@
 
             }).success(function(data){
                 //console.log('succes');
-                
+
             }).error(function(data){
 
                 $.niftyNoty({
@@ -138,7 +138,7 @@
                     message : 'Ocorreu um erro ao atualizar a conta! <br> ' +
                     'Certifique-se de que suas credenciais estão corretas e que você deu as devidas permissões na configuração da API na Hitbtc!',
                     container : 'floating',
-                    timer : 3000
+                    timer : 15000
                 });
             });
         }
