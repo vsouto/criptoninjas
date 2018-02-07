@@ -127,6 +127,9 @@
                     location.reload();
                 }, 1400);
 
+            }).success(function(data){
+                //console.log('succes');
+                
             }).error(function(data){
 
                 $.niftyNoty({

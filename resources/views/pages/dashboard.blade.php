@@ -118,43 +118,56 @@
                 <div class="panel">
                     <div class="panel-heading">
                         <div class="panel-control">
-                            <a class="fa fa-question-circle fa-lg fa-fw unselectable add-tooltip" href="#" data-original-title="<h4 class='text-thin'>Information</h4><p style='width:150px'>This is an information bubble to help the user.</p>" data-html="true" title=""></a>
+                            <a class="fa fa-question-circle fa-lg fa-fw unselectable add-tooltip" href="#"
+                               data-original-title="<h4 class='text-thin'>Info</h4><p style='width:150px'>Este painel mostrará seu portfolio de criptomoedas.</p><p>Para configurá-lo vá em Settings, no topo à direita." data-html="true" title=""></a>
                         </div>
                         <h3 class="panel-title">Portfolio</h3>
                     </div>
 
                     <div class="panel-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
-                                <thead>
-                                <tr>
-                                    <th style="width:4ex">ID</th>
-                                    <th>Name</th>
-                                    <th>Initial</th>
-                                    <th>Current Amount</th>
-                                    <th>Current Price</th>
-                                    <th>Current Value</th>
-                                    <th class="text-center">Profit</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach ($user->criptos as $cripto)
+                            @if (!$user->criptos || $user->criptos->count() <= 0)
+                                <div class="alert alert-warning fade in">
+                                    <button class="close" data-dismiss="alert"><span>×</span></button>
+                                    <strong>Ops!</strong> Você ainda não configurou sua conta, ou não possui criptomoedas.
+                                </div>
+                                <div class="alert alert-info fade in">
+                                    <button class="close" data-dismiss="alert"><span>×</span></button>
+                                    <strong>Configure</strong> sua conta clicando no seu nome no topo e depois em <b>Settings</b>.
+                                </div>
+                            @else
+                                <table class="table table-striped table-hover">
+                                    <thead>
                                     <tr>
-                                        <td><a href="#" class="btn-link">{{ $cripto->id }}</a></td>
-                                        <td>{{ $cripto->name }}</td>
-                                        <td></td>
-                                        <td class="text-center">{{ number_format($cripto->wallet->amount, 6, ',', '.') }} {{ $cripto->code }}</td>
-                                        <td class="text-center">U$ {{ number_format($cripto->price, 2, ',', '.') }} </td>
-                                        <td class="text-center">
-                                            <span class="label label-table label-success">U$ {{ number_format($cripto->price * $cripto->wallet->amount, 2, ',', '.') }}</span>
-                                        </td>
-                                        <td class="text-right">
-                                            {{--<span class="label label-table label-success">32%</span>--}}
-                                        </td>
+                                        <th style="width:4ex">ID</th>
+                                        <th>Name</th>
+                                        <th>Initial</th>
+                                        <th>Current Amount</th>
+                                        <th>Current Price</th>
+                                        <th>Current Value</th>
+                                        <th class="text-center">Profit</th>
                                     </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($user->criptos as $cripto)
+                                            <tr>
+                                                <td><a href="#" class="btn-link">{{ $cripto->id }}</a></td>
+                                                <td>{{ $cripto->name }}</td>
+                                                <td></td>
+                                                <td class="text-center">{{ number_format($cripto->wallet->amount, 6, ',', '.') }} {{ $cripto->code }}</td>
+                                                <td class="text-center">U$ {{ number_format($cripto->price, 2, ',', '.') }} </td>
+                                                <td class="text-center">
+                                                    <span class="label label-table label-success">U$ {{ number_format($cripto->price * $cripto->wallet->amount, 2, ',', '.') }}</span>
+                                                </td>
+                                                <td class="text-right">
+                                                    {{--<span class="label label-table label-success">32%</span>--}}
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            @endif
+
                         </div>
                     </div>
                 </div>

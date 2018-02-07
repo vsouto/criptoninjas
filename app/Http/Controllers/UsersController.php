@@ -29,7 +29,7 @@ class UsersController extends Controller
     {
         $this->middleware('auth');
     }
-
+/*
     public function index()
     {
         $provider = new EloquentDataProvider(User::class);
@@ -72,7 +72,7 @@ class UsersController extends Controller
     public function create()
     {
 
-    }
+    }*/
 
     public function store(Request $request)
     {
@@ -145,13 +145,25 @@ class UsersController extends Controller
             }
 
         } catch (\Hitbtc\Exception\InvalidRequestException $e) {
-            return $e;
+            report($e);
+
+            return false;
+
         } catch (\Exception $e) {
-            return $e;
+            report($e);
+
+            return false;
         }
 
         $user->update(['balance' => $user_balance]);
 
         return $user;
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()->route('home');
     }
 }

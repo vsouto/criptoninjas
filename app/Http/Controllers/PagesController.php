@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Cripto;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PagesController extends Controller
 {
@@ -25,7 +26,7 @@ class PagesController extends Controller
 
         $users = User::activeClient()->get();
 
-        $user = User::where('name', 'Victor')->with('criptos')->first();
+        $user = User::where('id', Auth::user()->id)->with('criptos')->first();
 
         $criptos = Cripto::get();
 

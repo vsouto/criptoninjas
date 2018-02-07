@@ -24,9 +24,11 @@ Route::group(['middleware' => 'web'], function () {
     Route::resource('todos', 'TodosController');
     Route::resource('criptos', 'CriptosController');
 
-    Route::get('logout', 'UsersController@logout');
+    //Route::get('logout', 'UsersController@logout');
 
     Auth::routes();
+
+    Route::get('/logout', 'UsersController@logout')->name('logout');
 
     Route::get('/dashboard', 'PagesController@dashboard')->name('dashboard');
 
