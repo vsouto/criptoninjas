@@ -32,7 +32,7 @@ class Kernel extends ConsoleKernel
             ->daily();
 
         $schedule->command('refresh:currencies')
-            ->everyFifteenMinutes();
+            ->everyMinute();
 
         $schedule->command('refresh:accounts')
             ->everyThirtyMinutes();
