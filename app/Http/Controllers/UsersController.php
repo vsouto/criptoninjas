@@ -128,7 +128,7 @@ class UsersController extends Controller
                 if ($user->criptos->where('base', $balance->getCurrency())->first())
                     $user->criptos()->detach($cripto->id);
 
-                // Only add to funds if based on USD
+                // Only add to funds if based on USD or USDT
                 if ($balance->getAvailable() > 0) {
 
                     // Attach the cripto for this user
@@ -140,7 +140,7 @@ class UsersController extends Controller
                     $user_balance += $adds;
                 }
                 else {
-                    //echo 'no funds on ' . $cripto->base;
+                    echo 'no funds on ' . $cripto->name;
                 }
             }
 
