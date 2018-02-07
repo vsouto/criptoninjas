@@ -138,9 +138,12 @@ class UsersController extends Controller
 
                     //echo 'ADDING ' . $adds . ' funds to ' . $cripto->base;
                     $user_balance += $adds;
+
+                    echo 'adding ' . $balance->getAvailable() . ' ' . $cripto->name . ' price = ' .  (int)$cripto->price . '<br>';
+                    echo 'balance: ' . $user_balance . '<br>';
                 }
                 else {
-                    echo 'no funds on ' . $cripto->name;
+                    echo '============ 0 funds on ' . $cripto->name . '<br>';
                 }
             }
 
