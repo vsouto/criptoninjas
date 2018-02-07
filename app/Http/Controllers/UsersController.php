@@ -134,12 +134,12 @@ class UsersController extends Controller
                     // Attach the cripto for this user
                     $user->criptos()->attach($cripto, ['amount' => $balance->getAvailable()]);
 
-                    $adds = $balance->getAvailable() * (int)$cripto->price;
+                    $adds = $balance->getAvailable() * $cripto->price;
 
                     //echo 'ADDING ' . $adds . ' funds to ' . $cripto->base;
                     $user_balance += $adds;
 
-                    echo 'adding ' . $balance->getAvailable() . ' ' . $cripto->name . ' price = ' .  (int)$cripto->price . '<br>';
+                    echo 'adding ' . $balance->getAvailable() . ' ' . $cripto->name . ' price = ' .  $cripto->price . '<br>';
                     echo 'balance: ' . $user_balance . '<br>';
                 }
                 else {
