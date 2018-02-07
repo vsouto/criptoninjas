@@ -122,12 +122,11 @@
                     container : 'floating',
                     timer : 3000
                 });
-/*
 
                 setTimeout(function(){
                     location.reload();
                 }, 1400);
-*/
+
 
             }).success(function(data){
                 //console.log('succes');
