@@ -30,6 +30,9 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/dashboard', 'PagesController@dashboard')->name('dashboard');
 
+    Route::post('/users/saveKeys',['as' => 'users.saveKeys', 'uses' => 'UsersController@saveKeys']);
+    Route::post('/users/refreshAccount',['as' => 'users.refreshAccount', 'uses' => 'UsersController@refreshAccount']);
+
 });
 
 Route::get('/', 'PagesController@index')->name('home');

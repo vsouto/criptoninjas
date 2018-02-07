@@ -22,6 +22,7 @@
                                 </span>
                             </a>
                         </li>
+{{--
 
                         <!--Menu list item-->
                         <li class="active-link">
@@ -50,6 +51,7 @@
 
                             </ul>
                         </li>
+--}}
 
                     </ul>
 

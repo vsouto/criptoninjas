@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Cripto;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use ViewComponents\Eloquent\EloquentDataProvider;
 use ViewComponents\Grids\Component\Column;
@@ -88,5 +90,68 @@ class UsersController extends Controller
         $save = User::create($data);
 
         return view('users.index');
+    }
+
+
+    public function saveKeys()
+    {
+        $public = Input::get('public_key');
+        $secret = Input::get('secret_key');
+
+        $save = User::where('id',Auth::user()->id)->update([
+            'hitbtc_public_key' => $public,
+            'hitbtc_private_key' => $secret
+        ]);
+
+        return $save;
+    }
+
+    public function refreshAccount()
+    {
+        $user = Auth::user();
+
+        $client = new \Hitbtc\ProtectedClient( $user->hitbtc_public_key, $user->hitbtc_private_key, $demo = false);
+
+        $user_balance = 0;
+
+        try {
+            foreach ($client->getBalanceTrading() as $balance) {
+
+                $cripto = Cripto::where('base', $balance->getCurrency())
+                    ->where('quote', 'USD')
+                    ->first();
+
+                if (!$cripto)
+                    continue;
+
+                // Detach the cripto
+                if ($user->criptos->where('base', $balance->getCurrency())->first())
+                    $user->criptos()->detach($cripto->id);
+
+                // Only add to funds if based on USD
+                if ($balance->getAvailable() > 0) {
+
+                    // Attach the cripto for this user
+                    $user->criptos()->attach($cripto, ['amount' => $balance->getAvailable()]);
+
+                    $adds = $balance->getAvailable() * (int)$cripto->price;
+
+                    //echo 'ADDING ' . $adds . ' funds to ' . $cripto->base;
+                    $user_balance += $adds;
+                }
+                else {
+                    //echo 'no funds on ' . $cripto->base;
+                }
+            }
+
+        } catch (\Hitbtc\Exception\InvalidRequestException $e) {
+            return $e;
+        } catch (\Exception $e) {
+            return $e;
+        }
+
+        $user->update(['balance' => $user_balance]);
+
+        return $user;
     }
 }

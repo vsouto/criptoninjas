@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Cripto;
+use App\User;
 use Illuminate\Console\Command;
 
 class RefreshBalances extends Command
@@ -11,7 +13,7 @@ class RefreshBalances extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'refresh:balances';
 
     /**
      * The console command description.
@@ -37,6 +39,21 @@ class RefreshBalances extends Command
      */
     public function handle()
     {
-        //
+        $users = User::has('criptos')->get();
+
+        $balance = 0;
+
+        foreach ($users as $user) {
+
+            foreach ($user->criptos as $cripto) {
+                $balance += $cripto->wallet->amount * $cripto->price;
+            }
+
+            $user->update(['balance' => $balance]);
+
+            $this->info('Updating user ' . $user->name . ' to: ' . $balance);
+        }
+
+        $this->info('Update finished.');
     }
 }

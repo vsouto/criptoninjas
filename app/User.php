@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'hitbtc_public_key', 'hitbtc_private_key'
+        'name', 'email', 'password', 'hitbtc_public_key', 'hitbtc_private_key', 'balance'
     ];
 
     /**

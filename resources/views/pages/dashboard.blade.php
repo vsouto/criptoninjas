@@ -143,10 +143,10 @@
                                         <td><a href="#" class="btn-link">{{ $cripto->id }}</a></td>
                                         <td>{{ $cripto->name }}</td>
                                         <td></td>
-                                        <td class="text-center">{{ $cripto->wallet->amount }} {{ $cripto->code }}</td>
-                                        <td class="text-center">U$ {{ $cripto->price }} </td>
+                                        <td class="text-center">{{ number_format($cripto->wallet->amount, 6, ',', '.') }} {{ $cripto->code }}</td>
+                                        <td class="text-center">U$ {{ number_format($cripto->price, 2, ',', '.') }} </td>
                                         <td class="text-center">
-                                            <span class="label label-table label-success">U$ {{ $cripto->price * $cripto->wallet->amount }}</span>
+                                            <span class="label label-table label-success">U$ {{ number_format($cripto->price * $cripto->wallet->amount, 2, ',', '.') }}</span>
                                         </td>
                                         <td class="text-right">
                                             {{--<span class="label label-table label-success">32%</span>--}}
@@ -163,12 +163,23 @@
 
             </div>
             <div class="col-lg-5">
+                <div class="panel middle">
+                    <div class="media-left pad-all">
+                        <i class="fa fa-check-circle fa-3x"></i>
+                    </div>
+
+                    <div class="media-body">
+                        <p class="text-2x mar-no text-thin text-mint">CriptoNinja Autenticado</p>
+                        <p class="text-muted mar-no">Plano Trial</p>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col-sm-6 col-lg-6">
 
                         <!--Tile with progress bar (Comments)-->
                         <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                        <div class="panel panel-mint panel-colorful">
+                        <div class="panel panel-purple panel-colorful">
                             <div class="pad-all media">
                                 <div class="media-left">
 												<span class="icon-wrap icon-wrap-xs">
@@ -176,7 +187,7 @@
 												</span>
                                 </div>
                                 <div class="media-body">
-                                    <p class="h3 text-thin media-heading">U$ 52.000</p>
+                                    <p class="h3 text-thin media-heading">U$ 0</p>
                                     <small class="text-uppercase">Initial Investment</small>
                                 </div>
                             </div>
@@ -197,7 +208,7 @@
 
                         <!--Tile with progress bar (New Orders)-->
                         <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                        <div class="panel panel-purple panel-colorful">
+                        <div class="panel panel-mint panel-colorful">
                             <div class="pad-all media">
                                 <div class="media-left">
 												<span class="icon-wrap icon-wrap-xs">
@@ -205,7 +216,7 @@
 												</span>
                                 </div>
                                 <div class="media-body">
-                                    <p class="h3 text-thin media-heading">U$ 63.235</p>
+                                    <p class="h3 text-thin media-heading">U$ {{ number_format($user->balance, 2, ',', '.') }}</p>
                                     <small class="text-uppercase">Current Networth</small>
                                 </div>
                             </div>
@@ -215,7 +226,7 @@
                             </div>
 
                             <div class="pad-all text-right">
-                                <small><span class="text-semibold"><i class="fa fa-shopping-cart fa-fw"></i> ETH</span> current reference</small>
+                                <small><span class="text-semibold"><i class="fa fa-shopping-cart fa-fw"></i> USD</span> based criptos only</small>
                             </div>
                         </div>
                         <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -223,6 +234,53 @@
 
                     </div>
                 </div>
+
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-control">
+                            <button data-dismiss="panel" class="btn btn-default">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </div>
+                        <h3 class="panel-title">Notas do Desenvolvedor</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-6 text-center">
+
+                                <img src="{{ asset('img/omg.jpg') }}" width="260px">
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="pad-ver">
+                                    <p class="text-lg">Alpha Progress</p>
+                                    <div class="progress progress-sm">
+                                        <div role="progressbar" style="width: 75%;" aria-valuemax="100" aria-valuemin="0" aria-valuenow="15" class="progress-bar progress-bar-purple">
+                                            <span class="sr-only">75%</span>
+                                        </div>
+                                    </div>
+                                    <small class="text-muted">15% Completed</small>
+                                </div>
+                                <div class="pad-ver">
+                                    <p class="text-lg">Beta Progress</p>
+                                    <div class="progress progress-sm">
+                                        <div role="progressbar" style="width: 10%;" aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" class="progress-bar progress-bar-success">
+                                            <span class="sr-only">10%</span>
+                                        </div>
+                                    </div>
+                                    <small class="text-muted">70% Completed</small>
+                                </div>
+
+                                <hr>
+                                <p class="text-muted">Calma! O CriptoNinjas está só começando.</p>
+                                <p class="text-muted">Várias ferramentas estão sendo construídas para você otimizar cada vez mais sua gestão no mercado de cripto.</p>
+                                <p class="text-muted">Em breve abriremos um quadro com as features que estão em desenvolvimento,
+                                    permitindo também os usuários votarem naquelas que acham mais relevantes a serem construídas!</p>
+                                <small class="text-muted"><em>Last Update : {{ \Illuminate\Support\Carbon::now() }}</em></small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 

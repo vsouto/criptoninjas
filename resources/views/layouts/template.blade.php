@@ -503,10 +503,10 @@
 
                             <!-- Dropdown heading  -->
                             <div class="pad-all bord-btm">
-                                <p class="text-lg text-muted text-thin mar-btm">750Gb of 1,000Gb Used</p>
+                                <p class="text-lg text-muted text-thin mar-btm">Plan: Trial</p>
                                 <div class="progress progress-sm">
-                                    <div class="progress-bar" style="width: 70%;">
-                                        <span class="sr-only">70%</span>
+                                    <div class="progress-bar" style="width: 15%;">
+                                        <span class="sr-only">15%</span>
                                     </div>
                                 </div>
                             </div>
@@ -518,19 +518,19 @@
                                     <a href="#">
                                         <i class="fa fa-user fa-fw fa-lg"></i> Profile
                                     </a>
-                                </li>
+                                </li>{{--
                                 <li>
                                     <a href="#">
                                         <span class="badge badge-danger pull-right">9</span>
                                         <i class="fa fa-envelope fa-fw fa-lg"></i> Messages
                                     </a>
-                                </li>
+                                </li>--}}
                                 <li>
-                                    <a href="#">
+                                    <a href="#" id="user-settings">
                                         <span class="label label-success pull-right">New</span>
                                         <i class="fa fa-gear fa-fw fa-lg"></i> Settings
                                     </a>
-                                </li>
+                                </li>{{--
                                 <li>
                                     <a href="#">
                                         <i class="fa fa-question-circle fa-fw fa-lg"></i> Help
@@ -540,7 +540,7 @@
                                     <a href="#">
                                         <i class="fa fa-lock fa-fw fa-lg"></i> Lock screen
                                     </a>
-                                </li>
+                                </li>--}}
                             </ul>
 
                             <!-- Dropdown footer -->
@@ -626,6 +626,9 @@
 
 <!--Specify page [ SAMPLE ]-->
 <script src="{{ asset('assets/js/demo/dashboard.js') }}"></script>
+
+<!--Bootbox Modals [ OPTIONAL ]-->
+<script src="{{ asset('assets/plugins/bootbox/bootbox.min.js') }}"></script>
 
 @include('elements.scripts')
 
