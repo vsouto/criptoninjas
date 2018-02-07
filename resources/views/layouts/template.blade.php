@@ -495,7 +495,7 @@
 								<span class="pull-right">
 									<img class="img-circle img-user media-object" src="{{ asset('assets/img/av1.png') }}" alt="Profile Picture">
 								</span>
-                            <div class="username hidden-xs">Victor Souto</div>
+                            <div class="username hidden-xs">{{ $user->name }}</div>
                         </a>
 
 
