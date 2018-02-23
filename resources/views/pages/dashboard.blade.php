@@ -75,7 +75,7 @@
                 <div class="panel media pad-all">
                     <div class="media-left">
                         <span class="icon-wrap icon-wrap-sm icon-circle bg-warning">
-                        <i class="fa fa-comment fa-2x"></i>
+                        <i class="fa fa-cloud-download-alt fa-2x"></i>
                         </span>
                     </div>
 
@@ -94,7 +94,7 @@
                 <div class="panel media pad-all">
                     <div class="media-left">
 									<span class="icon-wrap icon-wrap-sm icon-circle bg-danger">
-									<i class="fa fa-dollar fa-2x"></i>
+									<i class="fa fa-dollar-sign fa-2x"></i>
 									</span>
                     </div>
 
@@ -181,10 +181,17 @@
                         <i class="fa fa-check-circle fa-3x"></i>
                     </div>
 
-                    <div class="media-body">
-                        <p class="text-2x mar-no text-thin text-mint">CriptoNinja Autenticado</p>
-                        <p class="text-muted mar-no">Plano Trial</p>
-                    </div>
+                    @if ($user->last_activated_plan)
+                        <div class="media-body">
+                            <p class="text-2x mar-no text-thin text-mint">CriptoNinja Autenticado</p>
+                            <p class="text-muted mar-no">{{ $user->plans->first()->title }}</p>
+                        </div>
+                    @else
+                        <div class="media-body">
+                            <p class="text-2x mar-no text-thin text-mint">Visitante</p>
+                            <p class="text-muted mar-no"><a href="{{ route('plans.index') }}">Vire um CriptoNinja</a></p>
+                        </div>
+                    @endif
                 </div>
 
                 <div class="row">
@@ -196,7 +203,7 @@
                             <div class="pad-all media">
                                 <div class="media-left">
 												<span class="icon-wrap icon-wrap-xs">
-													<i class="fa fa-dollar fa-3x"></i>
+													<i class="fa fa-dollar-sign fa-3x"></i>
 												</span>
                                 </div>
                                 <div class="media-body">
@@ -225,7 +232,7 @@
                             <div class="pad-all media">
                                 <div class="media-left">
 												<span class="icon-wrap icon-wrap-xs">
-													<i class="fa fa-line-chart fa-fw fa-3x"></i>
+													<i class="fa fa-chart-line fa-fw fa-3x"></i>
 												</span>
                                 </div>
                                 <div class="media-body">
@@ -307,3 +314,25 @@
 
 
 @endsection
+
+@section('footer')
+    <script>
+        // WELCOME NOTIFICATIONS
+        // =================================================================
+        // Require Admin Core Javascript
+        // =================================================================
+        var fvisit  = setTimeout(function(){
+            $.niftyNoty({
+                type: 'dark',
+                title: 'Bem vindo, {{ Auth::user()->name }}!',
+                message: 'Este sistema está em fase BETA.<br>' +
+                'Muitas coisas podem estar faltando ou quebradas.<br>' +
+                'Por favor comunique-nos caso veja algo errado.',
+                container: 'floating',
+                timer: 5500
+            });
+            clearTimeout(fvisit);
+        }, 4000);
+    </script>
+
+    @endsection

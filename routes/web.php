@@ -19,7 +19,10 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'web'], function () {
 
+    Route::get('users/getCurrentPlan', 'UsersController@getCurrentPlan');
+
     Route::resource('users', 'UsersController');
+    Route::resource('posts', 'PostsController');
     Route::resource('plans', 'PlansController');
     Route::resource('todos', 'TodosController');
     Route::resource('criptos', 'CriptosController');
@@ -35,6 +38,14 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/users/saveKeys',['as' => 'users.saveKeys', 'uses' => 'UsersController@saveKeys']);
     Route::post('/users/refreshAccount',['as' => 'users.refreshAccount', 'uses' => 'UsersController@refreshAccount']);
 
+
+    Route::post('/plans/activate',['as' => 'plans.activate', 'uses' => 'PlansController@activate']);
+
 });
 
 Route::get('/', 'PagesController@index')->name('home');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});

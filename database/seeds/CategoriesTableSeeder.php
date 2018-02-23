@@ -13,21 +13,31 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         $category = Category::firstOrNew([
-            'slug' => 'category-1',
+            'slug' => 'noticias',
         ]);
         if (!$category->exists) {
             $category->fill([
-                'name' => 'Category 1',
+                'name' => 'Notícias',
             ])->save();
         }
 
         $category = Category::firstOrNew([
-            'slug' => 'category-2',
+            'slug' => 'videos',
         ]);
         if (!$category->exists) {
             $category->fill([
-                'name' => 'Category 2',
+                'name' => 'Vídeos',
             ])->save();
         }
+
+        $category = Category::firstOrNew([
+            'slug' => 'analises',
+        ]);
+        if (!$category->exists) {
+            $category->fill([
+                'name' => 'Análises',
+            ])->save();
+        }
+
     }
 }

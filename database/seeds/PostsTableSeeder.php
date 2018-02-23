@@ -24,6 +24,7 @@ class PostsTableSeeder extends Seeder
                 'meta_keywords'    => 'keyword1, keyword2, keyword3',
                 'status'           => 'PUBLISHED',
                 'featured'         => 0,
+                'category_id'         => '2',
             ])->save();
         }
 
@@ -43,6 +44,7 @@ class PostsTableSeeder extends Seeder
                 'meta_keywords'    => 'keyword1, keyword2, keyword3',
                 'status'           => 'PUBLISHED',
                 'featured'         => 0,
+                'category_id'         => '2',
             ])->save();
         }
 
@@ -60,6 +62,7 @@ class PostsTableSeeder extends Seeder
                 'meta_keywords'    => 'keyword1, keyword2, keyword3',
                 'status'           => 'PUBLISHED',
                 'featured'         => 0,
+                'category_id'         => '1',
             ])->save();
         }
 
@@ -79,6 +82,7 @@ class PostsTableSeeder extends Seeder
                 'meta_keywords'    => 'keyword1, keyword2, keyword3',
                 'status'           => 'PUBLISHED',
                 'featured'         => 0,
+                'category_id'         => '1',
             ])->save();
         }
     }

@@ -1,22 +1,5 @@
 <script>
 
-    // WELCOME NOTIFICATIONS
-    // =================================================================
-    // Require Admin Core Javascript
-    // =================================================================
-    var fvisit  = setTimeout(function(){
-        $.niftyNoty({
-            type: 'dark',
-            title: 'Bem vindo, {{ Auth::user()->name }}!',
-            message: 'Este sistema está em fase BETA.<br>' +
-            'Muitas coisas podem estar faltando ou quebradas.<br>' +
-            'Por favor comunique-nos caso veja algo errado.',
-            container: 'floating',
-            timer: 5500
-        });
-        clearTimeout(fvisit);
-    }, 3000);
-
     // BOOTBOX - FLIP IN/OUT ANIMATION
     // =================================================================
     // Require Bootbox
@@ -36,12 +19,12 @@
                 "<div class='form-group'>" +
                 "<label class='col-sm-3 control-label' for='demo-hor-inputemail'>Public Key</label>" +
                 "<div class='col-sm-9'>" +
-                "<input type='text' id='user-public-key' class='form-control' value='{{ $user->hitbtc_public_key }}'>" +
+                "<input type='text' id='user-public-key' class='form-control' value='{{ Auth::user()->hitbtc_public_key }}'>" +
                 "</div></div>" +
                 "<div class='form-group'>" +
                 "<label class='col-sm-3 control-label' for='demo-hor-inputpass'>Secret Key</label>" +
                 "<div class='col-sm-9'>" +
-                "<input type='text' id='user-secret-key' class='form-control' value='{{ $user->hitbtc_private_key }}'>" +
+                "<input type='text' id='user-secret-key' class='form-control' value='{{ Auth::user()->hitbtc_private_key }}'>" +
                 "</div></div></div></div></p>",
             buttons: {
                 confirm: {
@@ -143,5 +126,54 @@
                 });
             });
         }
+    }
+
+    function activatePlan(plan_id) {
+
+        $.ajax({
+            url: "{{ route('plans.activate') }}",
+            dataType: "html",
+            type: "POST",
+            data: {
+                plan_id: plan_id,
+                _token: '{{ csrf_token() }}',
+            }
+        }).done(function(data) {
+
+            $.niftyNoty({
+                type: 'success',
+                icon : 'fa fa-success',
+                message : 'Plano ativado com sucesso!',
+                container : 'floating',
+                timer : 4000
+            });
+
+            $.niftyNoty({
+                type: 'info',
+                icon : 'fa fa-info',
+                message : 'Um analista entrará em contato com você em no máximo 48 horas.',
+                container : 'floating',
+                timer : 10000
+            });
+
+            setTimeout(function(){
+                location.reload();
+            }, 8000);
+
+
+        }).success(function(data){
+            //console.log('succes');
+
+        }).error(function(data){
+
+            $.niftyNoty({
+                type: 'danger',
+                icon : 'fa fa-danger',
+                message : 'Ocorreu um erro ao atualizar a conta! <br> ' +
+                'Certifique-se de que suas credenciais estão corretas e que você deu as devidas permissões na configuração da API na Hitbtc!',
+                container : 'floating',
+                timer : 15000
+            });
+        });
     }
 </script>

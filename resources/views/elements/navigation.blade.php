@@ -16,12 +16,41 @@
                         <!--Menu list item-->
                         <li class="active-link">
                             <a href="{{ route('dashboard') }}">
-                                <i class="fa fa-dashboard"></i>
+                                <i class="fa fa-home"></i>
                                 <span class="menu-title">
                                     <strong>Dashboard</strong>
                                 </span>
                             </a>
                         </li>
+
+                        <!--Menu list item-->
+                        <li class="">
+                            <a href="{{ route('posts.index') }}">
+                                <i class="fa fa-newspaper"></i>
+                                <span class="menu-title">
+                                    <strong>Notícias</strong>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="{{ route('posts.index') }}#videos-tab">
+                                <i class="fa fa-video"></i>
+                                <span class="menu-title">
+                                    <strong>Vídeos</strong>
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="">
+                            <a href="{{ route('plans.index') }}">
+                                <i class="far fa-clipboard"></i>
+                                <span class="menu-title">
+                                    <strong>Planos</strong>
+                                </span>
+                            </a>
+                        </li>
+
+
 {{--
 
                         <!--Menu list item-->

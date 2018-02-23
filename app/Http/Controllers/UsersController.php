@@ -169,4 +169,12 @@ class UsersController extends Controller
 
         return redirect()->route('home');
     }
+
+    public function getCurrentPlan($user = false)
+    {
+        if (!$user)
+            $user = Auth::user();
+
+        dd($user->plans->take(1));
+    }
 }
