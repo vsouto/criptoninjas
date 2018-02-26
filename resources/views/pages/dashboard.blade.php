@@ -243,7 +243,7 @@
 												</span>
                                 </div>
                                 <div class="media-body">
-                                    <p class="h3 text-thin media-heading">U$ 0</p>
+                                    <p class="h3 text-thin media-heading">U$ {{ $user->initial_value }}</p>
                                     <small class="text-uppercase">Initial Investment</small>
                                 </div>
                             </div>
