@@ -199,7 +199,7 @@
                                             <div class="media-heading">
                                                 <a class="h4 btn-link" href="{{ route('posts.show', ['slug' => $post->slug ]) }}">{{ $post->title }}</a>
                                             </div>
-                                            <a class="btn-link text-success box-inline" href="#">http://www.example.com/nifty/admin</a>
+                                            <a class="btn-link text-success box-inline" href="{{ url('posts' , $post->slug) }}">{{ url('posts' , $post->slug) }}</a>
                                             <p>{!! substr($post->excerpt,0, 160) !!}</p>
                                         </div>
                                     </li>
