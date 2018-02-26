@@ -40,7 +40,7 @@ class GetSymbols extends Command
     public function handle()
     {
         //
-        $user = User::where('name', 'Victor')->first();
+        $user = User::where('email', 'souto.victor@gmail.com')->first();
 
         $client = new \Hitbtc\ProtectedClient( $user->hitbtc_public_key, $user->hitbtc_private_key, $demo = false);
 
