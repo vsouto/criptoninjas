@@ -66,7 +66,7 @@
                 <a href="{{ route('dashboard') }}" class="navbar-brand">
                     <img src="{{ asset('img/criptoninja-white.png') }}" alt="Cripto Ninja" class="brand-icon">
                     <div class="brand-title">
-                        <span class="brand-text">Cripto Ninja</span>
+                        <span class="brand-text">CriptoNinja</span>
                     </div>
                 </a>
             </div>

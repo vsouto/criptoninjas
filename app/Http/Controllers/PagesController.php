@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cripto;
+use App\Post;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +31,12 @@ class PagesController extends Controller
 
         $criptos = Cripto::get();
 
-        return view('pages.dashboard', compact('user', 'users','criptos'));
+        $news = Post::take(20)
+            ->orderBy('created_at','DESC')
+            ->with('category')
+            ->get();
+
+        return view('pages.dashboard', compact('user', 'users','criptos','news'));
     }
 
 }

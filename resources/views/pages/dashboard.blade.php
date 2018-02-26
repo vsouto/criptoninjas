@@ -174,6 +174,42 @@
                 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                 <!--End user table-->
 
+                <div class="tab-base">
+
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#noticias-tab" data-toggle="tab">Últimas Notícias <span class="label label-purple">{{ $news->count() }}</span></a>
+                        </li>
+                    </ul>
+
+                    <!-- Tabs Content -->
+                    <div class="tab-content">
+
+                        <!-- DEFAULT SEARCH LAYOUT -->
+                        <!--===================================================-->
+                        <div class="tab-pane fade active in" id="noticias-tab">
+                            <ul class="list-group bord-no">
+                                @foreach($news as $post)
+                                    <li class="list-group-item mar-ver media">
+                                        <div class="pull-left">
+                                            <img class="img" style="width: 120px;" alt="{{ $post->title }}" src="{{ asset('storage/' .$post->image) }}">
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="media-heading">
+                                                <a class="h4 btn-link" href="{{ route('posts.show', ['slug' => $post->slug ]) }}">{{ $post->title }}</a>
+                                            </div>
+                                            <a class="btn-link text-success box-inline" href="#">http://www.example.com/nifty/admin</a>
+                                            <p>{!! substr($post->excerpt,0, 160) !!}</p>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <!--===================================================-->
+                    </div>
+                </div>
+
             </div>
             <div class="col-lg-5">
                 <div class="panel middle">
@@ -302,6 +338,7 @@
                 </div>
 
             </div>
+
         </div>
 
     </div>
