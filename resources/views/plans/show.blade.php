@@ -30,7 +30,19 @@
                     </div>
                     <div class="panel-body">
                         <h4>{{ $plan->title }}</h4>
-                        {{ $plan->description }}
+                        <p class="text">
+                            {{ $plan->description }}
+                        </p>
+                        <br>
+                        <p>
+                            <b>Taxa de gestão: </b> {{ $plan->price }}%
+                        </p>
+                        <p>
+                            <b>Quantia mínima inicial: </b> R$ 500,00
+                        </p>
+                        <p>
+                            <b>Duração: </b> 30 dias
+                        </p>
                     </div>
                 </div>
                 <!--===================================================-->
@@ -61,7 +73,7 @@
             $.niftyNoty({
                 type: 'warning',
                 icon : 'fa fa-exclamation',
-                message : 'Esta funcionalidade ainda n�o est� pronta!',
+                message : 'Esta funcionalidade ainda não está pronta!',
                 container : 'floating',
                 timer : 3200
             });

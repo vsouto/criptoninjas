@@ -22,28 +22,34 @@
                 <div class="col-lg-8">
 
                     @foreach( $plans as $plan)
-                        <div class="panel">
-                            <div class="panel-bg-cover" style="    max-height: 302px !important;">
-                                <img class="img-responsive" src="{{ asset('img/' . strtolower($plan->word). '.jpg') }}" alt="Image">
-                            </div>
-                            <div class="panel-media">
-                                <img src="{{ asset('img/avatar/'. strtolower($plan->word).'.png') }}" class="panel-media-img img-circle img-border-light" alt="Profile Picture">
-                                <div class="row">
-                                    <div class="col-lg-7">
-                                        <h3 class="panel-media-heading">{{ $plan->title }}</h3>
-                                        <a href="#" class="btn-link">{{ $plan->word }}</a>
-                                        <p class="text-muted mar-btm">{{ $plan->short }}</p>
-                                    </div>
-                                    <div class="col-lg-5 text-lg-right">
-                                        {!! getUserPlanButton($user, $plan->id) !!}
+                        @if ($user->plans->count() > 0 && $plan->title == 'Trial')
+                            @continue
+                        @else
+                            <div class="panel">
+                                <div class="panel-bg-cover" style="    max-height: 302px !important;">
+                                    <img class="img-responsive" src="{{ asset('img/' . strtolower($plan->word). '.jpg') }}" alt="Image">
+                                </div>
+                                <div class="panel-media">
+                                    <img src="{{ asset('img/avatar/'. strtolower($plan->word).'.png') }}" class="panel-media-img img-circle img-border-light" alt="Profile Picture">
+                                    <div class="row">
+                                        <div class="col-lg-7">
+                                            <a href="{{ route('plans.show',[$plan->id]) }}">
+                                                <h3 class="panel-media-heading">{{ $plan->title }}</h3>
+                                            </a>
+                                            <a href="#" class="btn-link">{{ $plan->word }}</a>
+                                            <p class="text-muted mar-btm">{{ $plan->short }}</p>
+                                        </div>
+                                        <div class="col-lg-5 text-lg-right">
+                                            {!! getUserPlanButton($user, $plan->id) !!}
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="panel-body">
+                                    <h4>{{ $plan->title }}</h4>
+                                    {{ $plan->description }}
+                                </div>
                             </div>
-                            <div class="panel-body">
-                                <h4>{{ $plan->title }}</h4>
-                                {{ $plan->description }}
-                            </div>
-                        </div>
+                        @endif
                     @endforeach
                 </div>
 
@@ -62,11 +68,11 @@
                                 @if ($user->last_activated_plan)
                                     <div class="col-sm-6 text-center">
                                         <i class="far fa-address-card fa-5x"></i>
-                                        <p class="text-lg">{{ $plan->title }}</p>
+                                        <p class="text-lg">{{ $user->last_activated_plan->title }}</p>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="pad-ver">
-                                            <p class="text-lg">{{ $plan->title }}</p>
+                                            <p class="text-lg">{{ $user->last_activated_plan->title }}</p>
                                             <div class="progress progress-sm">
                                                 <div role="progressbar" style="width: {{ $days_passed_percentage }}%;" aria-valuemax="100" aria-valuemin="0" aria-valuenow="15" class="progress-bar progress-bar-purple">
                                                     <span class="sr-only">{{ $days_passed_percentage }}</span>
