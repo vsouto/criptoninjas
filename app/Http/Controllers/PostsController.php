@@ -13,7 +13,7 @@ class PostsController extends Controller
 
     public function index()
     {
-        $this->seo()->setTitle('CriptoNinja - Notícias');
+        $this->seo()->setTitle('CriptoNinja - NotÃ­cias');
         $this->seo()->opengraph()->addProperty('type', 'articles');
 
         $news = Post::take(20)
@@ -38,7 +38,7 @@ class PostsController extends Controller
     //
     public function show($slug)
     {
-        $this->seo()->setTitle('CriptoNinja - Notícias');
+        $this->seo()->setTitle('CriptoNinja - NotÃ­cias');
         $this->seo()->opengraph()->addProperty('type', 'articles');
 
         $post = Post::where('slug',$slug)->first();
