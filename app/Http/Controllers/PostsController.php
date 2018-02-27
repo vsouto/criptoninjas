@@ -11,6 +11,9 @@ class PostsController extends Controller
 
     public function index()
     {
+        $this->seo()->setTitle('CriptoNinja - Notícias');
+        $this->seo()->opengraph()->addProperty('type', 'articles');
+
         $news = Post::take(20)
             ->orderBy('created_at','DESC')
             ->where('category_id','1')
@@ -33,20 +36,12 @@ class PostsController extends Controller
     //
     public function show($slug)
     {
-        //$posts = Post::take(6)->get();
+        $this->seo()->setTitle('CriptoNinja - Notícias');
+        $this->seo()->opengraph()->addProperty('type', 'articles');
 
         $post = Post::where('slug',$slug)->first();
 
-        //$categories = Category::get();
-
         return view('posts.show',compact('post'));
-        //return view('posts.show',compact('post','posts','categories'));
     }
 
-    public function create()
-    {
-
-
-        return view('posts.create');
-    }
 }
