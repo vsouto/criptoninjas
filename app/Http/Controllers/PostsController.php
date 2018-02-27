@@ -33,18 +33,26 @@ class PostsController extends Controller
         $this->seo()->opengraph()->addProperty('type', 'articles');
         $this->seo()->opengraph()->setDescription('Notícias, vídeos e todo o conteúdo que você precisa pra dominar cripto');
         $this->seo()->opengraph()->addImage( asset('img/criptoninja-box.png') );
+        $this->seo()->opengraph()->setUrl( Request::url() );
 
         return view('posts.index',compact('news','videos', 'categories'));
     }
 
     //
-    public function show($slug)
+    public function show(Request $request, $slug)
     {
-        $post = Post::where('slug',$slug)->first();
+        $post = Post::where('slug',$slug)->with('author')->first();
 
         $this->seo()->setTitle('CriptoNinja - Notícias');
-        $this->seo()->opengraph()->addProperty('type', 'articles');
+        $this->seo()->opengraph()->addProperty('type', 'article');
+        $this->seo()->opengraph()->addProperty('type', 'article');
         $this->seo()->opengraph()->setDescription($post->excerpt);
+        $this->seo()->opengraph()->setUrl( $request->url() );
+        $this->seo()->opengraph()->setArticle([
+            'published_time' => $post->created_at,
+            'author' => $post->author? $post->author->name : 'CriptoNinja',
+            'tag' => $post->meta_keywords
+        ]);
 
         $image = isValidImage(asset('storage/' . $post->image))? asset('storage/' . $post->image) : asset('img/criptoninja-box.png');
 
