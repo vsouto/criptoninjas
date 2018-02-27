@@ -98,27 +98,6 @@
                     </div>
                     <!--===================================================-->
 
-                    <!-- Analises -->
-                    <!--===================================================-->
-                    <div class="tab-pane fade" id="demo-search-tab-3">
-                        <ul class="list-group bord-no">
-                            @foreach($analises as $post)
-                                <li class="list-group-item mar-ver media">
-                                    <div class="pull-left">
-                                        <img class="img-lg" alt="Image" src="{{ asset('storage/' .$post->image) }}">
-                                    </div>
-                                    <div class="media-body">
-                                        <div class="media-heading">
-                                            <a class="h4 btn-link" href="{{ route('posts.show', ['slug' => $post->slug ]) }}">{{ $post->title }}</a>
-                                        </div>
-                                        <a class="btn-link text-success box-inline" href="#">http://www.example.com/nifty/admin</a>
-                                        <p>{!! substr($post->excerpt,0, 160) !!}</p>
-                                    </div>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <!--===================================================-->
 
                 </div>
             </div>

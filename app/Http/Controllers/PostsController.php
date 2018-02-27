@@ -23,17 +23,11 @@ class PostsController extends Controller
             ->with('category')
             ->get();
 
-        $analises = Post::take(20)
-            ->orderBy('created_at','DESC')
-            ->where('category_id','3')
-            ->with('category')
-            ->get();
-
         $categories = Category::take(10)
             ->orderBy('name','ASC')
             ->get();
 
-        return view('posts.index',compact('news','videos','analises', 'categories'));
+        return view('posts.index',compact('news','videos', 'categories'));
     }
 
     //

@@ -23,4 +23,11 @@ class Post extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function getImageAttribute($value)
+    {
+        if (!$value || empty($value))
+            return 'posts-default.jpg';
+
+        return $value;
+    }
 }

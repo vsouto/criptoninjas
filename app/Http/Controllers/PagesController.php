@@ -31,7 +31,7 @@ class PagesController extends Controller
 
         $criptos = Cripto::get();
 
-        $news = Post::take(20)
+        $news = Post::take(8)
             ->orderBy('created_at','DESC')
             ->with('category')
             ->get();

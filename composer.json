@@ -15,7 +15,8 @@
         "hitbtc-com/hitbtc-php-sdk": "~1.0",
         "view-components/grids": "^0.5.9",
         "view-components/eloquent-data-processing": "^1.2",
-        "tcg/voyager": "^1.0"
+        "tcg/voyager": "^1.0",
+        "artesaos/seotools": "^0.11.1"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
