@@ -54,3 +54,18 @@ function getUserPlanButton($user, $plan_id) {
 
     return '<button class="btn btn-sm btn-mint btn-icon select-plan" data-plan="'.$plan_id.'">Ativar</button>';
 }
+
+function isValidImage($image) {
+
+    $file_headers = @get_headers($image);
+
+    if($file_headers[0] == 'HTTP/1.0 404 Not Found'){
+        //echo "The file $filename does not exist";
+        return false;
+    } else if ($file_headers[0] == 'HTTP/1.0 302 Found' && $file_headers[7] == 'HTTP/1.0 404 Not Found'){
+        //echo "The file $filename does not exist, and I got redirected to a custom 404 page..";
+        return false;
+    } else {
+        return true;
+    }
+}

@@ -13,9 +13,6 @@ class PostsController extends Controller
 
     public function index()
     {
-        $this->seo()->setTitle('CriptoNinja - Notícias');
-        $this->seo()->opengraph()->addProperty('type', 'articles');
-
         $news = Post::take(20)
             ->orderBy('created_at','DESC')
             ->where('category_id','1')
@@ -32,16 +29,26 @@ class PostsController extends Controller
             ->orderBy('name','ASC')
             ->get();
 
+        $this->seo()->setTitle('CriptoNinja - Notícias');
+        $this->seo()->opengraph()->addProperty('type', 'articles');
+        $this->seo()->opengraph()->setDescription('Notícias, vídeos e todo o conteúdo que você precisa pra dominar cripto');
+        $this->seo()->opengraph()->addImage( asset('img/criptoninja-box.png') );
+
         return view('posts.index',compact('news','videos', 'categories'));
     }
 
     //
     public function show($slug)
     {
+        $post = Post::where('slug',$slug)->first();
+
         $this->seo()->setTitle('CriptoNinja - Notícias');
         $this->seo()->opengraph()->addProperty('type', 'articles');
+        $this->seo()->opengraph()->setDescription($post->excerpt);
 
-        $post = Post::where('slug',$slug)->first();
+        $image = isValidImage(asset('storage/' . $post->image))? asset('storage/' . $post->image) : asset('img/criptoninja-box.png');
+
+        $this->seo()->opengraph()->addImage( $image );
 
         return view('posts.show',compact('post'));
     }
