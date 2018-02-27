@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Post;
 use Illuminate\Http\Request;
+use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
 
 class PostsController extends Controller
 {
+    use SEOToolsTrait;
 
     public function index()
     {

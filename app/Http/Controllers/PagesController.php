@@ -7,9 +7,12 @@ use App\Post;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
 
 class PagesController extends Controller
 {
+    use SEOToolsTrait;
+    
     public function __construct()
     {
         $this->middleware('auth')->except('index');
