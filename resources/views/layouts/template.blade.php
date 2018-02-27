@@ -3,16 +3,17 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'CriptoNinja') }}</title>
 
     {!! SEOMeta::generate() !!}
     {!! OpenGraph::generate() !!}
     {!! Twitter::generate() !!}
 
-    <title>{{ config('app.name', 'CriptoNinja') }}</title>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!--STYLESHEET-->
     <!--=================================================-->
