@@ -66,7 +66,7 @@
             <!--Brand logo & name-->
             <!--================================-->
             <div class="navbar-header">
-                <a href="{{ route('dashboard') }}" class="navbar-brand">
+                <a href="{{ route('home') }}" class="navbar-brand">
                     <img src="{{ asset('img/criptoninja-white.png') }}" alt="Cripto Ninja" class="brand-icon">
                     <div class="brand-title">
                         <span class="brand-text">CriptoNinja</span>
