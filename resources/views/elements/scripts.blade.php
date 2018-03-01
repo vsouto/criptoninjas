@@ -8,42 +8,45 @@
     // Animate.css
     // http://daneden.github.io/animate.css/
     // =================================================================
-    $('#user-settings').on('click', function(){
-        bootbox.confirm({
-            message : "<h2 class='text-thin'>Settings</h2><br>" +
-            "<h4>Hitbtc API</h4>" +
-            "<p>Para utilizar as ferramentas do <b>CriptoNinja</b>, você deve gerar suas credenciais na API da <b>Hitbtc</b>, acessando o sistema deles por:</p>" +
-            "<p> Hitbtc > Settings > API Keys > New API Key.</p>" +
-            "<p>Em seguida, coloque aqui as credenciais:</p>" +
-            "<p><div class='panel-body'>" +
-                "<div class='form-group'>" +
-                "<label class='col-sm-3 control-label' for='demo-hor-inputemail'>Public Key</label>" +
-                "<div class='col-sm-9'>" +
-                "<input type='text' id='user-public-key' class='form-control' value='{{ Auth::user()->hitbtc_public_key }}'>" +
-                "</div></div>" +
-                "<div class='form-group'>" +
-                "<label class='col-sm-3 control-label' for='demo-hor-inputpass'>Secret Key</label>" +
-                "<div class='col-sm-9'>" +
-                "<input type='text' id='user-secret-key' class='form-control' value='{{ Auth::user()->hitbtc_private_key }}'>" +
-                "</div></div></div></div></p>",
-            buttons: {
-                confirm: {
-                    label: "Save"
-                }
-            },
-            callback : function(result) {
-                //Callback function here
-                var public_key = $('#user-public-key').val();
-                var secret_key = $('#user-secret-key').val();
 
-                // save user info
-                saveUserKeyInfo(public_key, secret_key);
+    @if (Auth::check())
+        $('#user-settings').on('click', function(){
+            bootbox.confirm({
+                message : "<h2 class='text-thin'>Settings</h2><br>" +
+                "<h4>Hitbtc API</h4>" +
+                "<p>Para utilizar as ferramentas do <b>CriptoNinja</b>, você deve gerar suas credenciais na API da <b>Hitbtc</b>, acessando o sistema deles por:</p>" +
+                "<p> Hitbtc > Settings > API Keys > New API Key.</p>" +
+                "<p>Em seguida, coloque aqui as credenciais:</p>" +
+                "<p><div class='panel-body'>" +
+                    "<div class='form-group'>" +
+                    "<label class='col-sm-3 control-label' for='demo-hor-inputemail'>Public Key</label>" +
+                    "<div class='col-sm-9'>" +
+                    "<input type='text' id='user-public-key' class='form-control' value='{{ Auth::user()->hitbtc_public_key }}'>" +
+                    "</div></div>" +
+                    "<div class='form-group'>" +
+                    "<label class='col-sm-3 control-label' for='demo-hor-inputpass'>Secret Key</label>" +
+                    "<div class='col-sm-9'>" +
+                    "<input type='text' id='user-secret-key' class='form-control' value='{{ Auth::user()->hitbtc_private_key }}'>" +
+                    "</div></div></div></div></p>",
+                buttons: {
+                    confirm: {
+                        label: "Save"
+                    }
+                },
+                callback : function(result) {
+                    //Callback function here
+                    var public_key = $('#user-public-key').val();
+                    var secret_key = $('#user-secret-key').val();
 
-            },
-            animateIn: 'flipInX',
-            animateOut : 'flipOutX'
+                    // save user info
+                    saveUserKeyInfo(public_key, secret_key);
+
+                },
+                animateIn: 'flipInX',
+                animateOut : 'flipOutX'
+            });
         });
-    });
+    @endif
 
     function saveUserKeyInfo(public, secret) {
 

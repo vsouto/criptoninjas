@@ -6,8 +6,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{ config('app.name', 'CriptoNinja') }}</title>
-
     {!! SEOMeta::generate() !!}
     {!! OpenGraph::generate() !!}
     {!! Twitter::generate() !!}
@@ -158,66 +156,92 @@
 
                     <!--User dropdown-->
                     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                    <li id="dropdown-user" class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
-								<span class="pull-right">
-									<img class="img-circle img-user media-object" src="{{ asset('assets/img/av1.png') }}" alt="Profile Picture">
-								</span>
-                            <div class="username hidden-xs">{{ Auth::user()->name }}</div>
-                        </a>
+                    @if (Auth::check())
+                        <li id="dropdown-user" class="dropdown">
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
+                                    <span class="pull-right">
+                                        <img class="img-circle img-user media-object" src="{{ asset('assets/img/av1.png') }}" alt="Profile Picture">
+                                    </span>
+                                <div class="username hidden-xs">{{ Auth::user()->name }}</div>
+                            </a>
 
 
-                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-right with-arrow panel-default">
+                            <div class="dropdown-menu dropdown-menu-md dropdown-menu-right with-arrow panel-default">
 
-                            <!-- Dropdown heading  -->
-                            <div class="pad-all bord-btm">
-                                <p class="text-lg text-muted text-thin mar-btm">Plan: Trial</p>
-                                <div class="progress progress-sm">
-                                    <div class="progress-bar" style="width: 15%;">
-                                        <span class="sr-only">15%</span>
+                                <!-- Dropdown heading  -->
+                                <div class="pad-all bord-btm">
+                                    <p class="text-lg text-muted text-thin mar-btm">Plan: Trial</p>
+                                    <div class="progress progress-sm">
+                                        <div class="progress-bar" style="width: 15%;">
+                                            <span class="sr-only">15%</span>
+                                        </div>
                                     </div>
                                 </div>
+
+
+                                <!-- User dropdown menu -->
+                                <ul class="head-list">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-user fa-fw fa-lg"></i> Profile
+                                        </a>
+                                    </li>{{--
+                                    <li>
+                                        <a href="#">
+                                            <span class="badge badge-danger pull-right">9</span>
+                                            <i class="fa fa-envelope fa-fw fa-lg"></i> Messages
+                                        </a>
+                                    </li>--}}
+                                    <li>
+                                        <a href="#" id="user-settings">
+                                            <i class="fa fa-wrench fa-fw fa-lg"></i> Settings
+                                        </a>
+                                    </li>{{--
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-question-circle fa-fw fa-lg"></i> Help
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-lock fa-fw fa-lg"></i> Lock screen
+                                        </a>
+                                    </li>--}}
+                                </ul>
+
+                                <!-- Dropdown footer -->
+                                <div class="pad-all text-right">
+                                    <a href="{{ route('logout') }}" class="btn btn-primary">
+                                        <i class="fa fa-sign-out-alt fa-fw"></i> Logout
+                                    </a>
+                                </div>
                             </div>
+                        </li>
+                    @else
+                        <li id="dropdown-user" class="dropdown">
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
+                                    <span class="pull-right">
+                                        <img class="img-circle img-user media-object" src="{{ asset('img/criptoninja.png') }}" alt="Profile Picture">
+                                    </span>
+                                <div class="username hidden-xs">Visitante</div>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-md dropdown-menu-right with-arrow panel-default">
 
 
-                            <!-- User dropdown menu -->
-                            <ul class="head-list">
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-user fa-fw fa-lg"></i> Profile
-                                    </a>
-                                </li>{{--
-                                <li>
-                                    <a href="#">
-                                        <span class="badge badge-danger pull-right">9</span>
-                                        <i class="fa fa-envelope fa-fw fa-lg"></i> Messages
-                                    </a>
-                                </li>--}}
-                                <li>
-                                    <a href="#" id="user-settings">
-                                        <i class="fa fa-wrench fa-fw fa-lg"></i> Settings
-                                    </a>
-                                </li>{{--
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-question-circle fa-fw fa-lg"></i> Help
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-lock fa-fw fa-lg"></i> Lock screen
-                                    </a>
-                                </li>--}}
-                            </ul>
-
-                            <!-- Dropdown footer -->
-                            <div class="pad-all text-right">
-                                <a href="{{ route('logout') }}" class="btn btn-primary">
-                                    <i class="fa fa-sign-out fa-fw"></i> Logout
-                                </a>
-                            </div>
-                        </div>
-                    </li>
+                                <!-- User dropdown menu -->
+                                <ul class="head-list">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-user fa-fw fa-lg"></i> Login
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" id="user-settings">
+                                            <i class="fa fa-wrench fa-fw fa-lg"></i> Registrar
+                                        </a>
+                                    </li>
+                    @endif
                     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                     <!--End user dropdown-->
 

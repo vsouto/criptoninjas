@@ -15,26 +15,36 @@ class PagesController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->except('index');
+        $this->middleware('auth')->except('index','home');
     }
 
     //
-    public function index()
+    public function home()
     {
-        $this->seo()->setTitle('CriptoNinja - Home');
-        //$this->seo()->setDescription('Para quem quer se tornar um ninja de cripto');
+        $this->seo()->setTitle('CriptoNinja');
+        $this->seo()->setDescription('Tornando-se um faixa preta em criptomoedas');
         $this->seo()->opengraph()->addProperty('type', 'articles');
-        //$this->seo()->twitter()->setSite('@criptoninjas');
+        $this->seo()->twitter()->setSite('@criptoninjas');
 
-        return view('home');
+        $users = User::activeClient()->get();
+
+        $user = Auth::check()? User::where('id',Auth::user()->id)->first() : false;
+
+        $criptos = Cripto::get();
+
+        $news = Post::take(12)
+            ->orderBy('created_at','DESC')
+            ->with('category')
+            ->get();
+
+        return view('pages.home',compact( 'users','criptos','news','user'));
     }
 
     //
     public function dashboard()
     {
         $this->seo()->setTitle('CriptoNinja - Dashboard');
-        //$this->seo()->setDescription('This is my page description');
-        //$this->seo()->opengraph()->setUrl('http://current.url.com');
+        $this->seo()->setDescription('Tornando-se um faixa preta em criptomoedas');
         $this->seo()->opengraph()->addProperty('type', 'articles');
         //$this->seo()->twitter()->setSite('@criptoninjas');
 

@@ -28,8 +28,8 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Cripto Ninja') }}
+                    <a class="navbar-brand" href="{{ route('home') }}">
+                        {{ config('app.name', 'CriptoNinja') }}
                     </a>
                 </div>
 

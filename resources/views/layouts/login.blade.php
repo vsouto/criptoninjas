@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login page | Nifty - Responsive admin template.</title>
+    <title>CriptoNinja - Login</title>
 
 
     <!--STYLESHEET-->
@@ -32,40 +32,12 @@
     <!--Demo [ DEMONSTRATION ]-->
     <link href="css/demo/nifty-demo.min.css" rel="stylesheet">
 
-
-
-
     <!--SCRIPT-->
     <!--=================================================-->
 
     <!--Page Load Progress Bar [ OPTIONAL ]-->
     <link href="plugins/pace/pace.min.css" rel="stylesheet">
     <script src="plugins/pace/pace.min.js"></script>
-
-
-
-    <!--
-
-    REQUIRED
-    You must include this in your project.
-
-    RECOMMENDED
-    This category must be included but you may modify which plugins or components which should be included in your project.
-
-    OPTIONAL
-    Optional plugins. You may choose whether to include it in your project or not.
-
-    DEMONSTRATION
-    This is to be removed, used for demonstration purposes only. This category must not be included in your project.
-
-    SAMPLE
-    Some script samples which explain how to initialize plugins or components. This category should not be included in your project.
-
-
-    Detailed information and more samples can be found in the document.
-
-    -->
-
 
 </head>
 
@@ -75,8 +47,6 @@
 <body>
 
 @yield('content')
-
-
 
 <!--JAVASCRIPT-->
 <!--=================================================-->
@@ -99,8 +69,6 @@
 
 <!--Background Image [ DEMONSTRATION ]-->
 <script src="js/demo/bg-images.js"></script>
-
-
 
 
 </body>

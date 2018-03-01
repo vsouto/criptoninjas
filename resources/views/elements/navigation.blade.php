@@ -15,8 +15,18 @@
 
                         <!--Menu list item-->
                         <li class="active-link">
-                            <a href="{{ route('dashboard') }}">
+                            <a href="{{ route('home') }}">
                                 <i class="fa fa-home"></i>
+                                <span class="menu-title">
+                                    <strong>Home</strong>
+                                </span>
+                            </a>
+                        </li>
+
+                        <!--Menu list item-->
+                        <li class="">
+                            <a href="{{ route('dashboard') }}">
+                                <i class="fa fa-tachometer-alt"></i>
                                 <span class="menu-title">
                                     <strong>Dashboard</strong>
                                 </span>
