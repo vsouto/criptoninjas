@@ -19,6 +19,12 @@ Route::get('/', 'PagesController@home')->name('home');
 Route::resource('posts', 'PostsController');
 Route::resource('criptos', 'CriptosController');
 
+Route::get('/mailable', function () {
+    //$invoice = App\Invoice::find(1);
+
+    return new App\Mail\Newsletter();
+});
+
 Route::group(['middleware' => 'web'], function () {
 
     Route::get('users/getCurrentPlan', 'UsersController@getCurrentPlan');
